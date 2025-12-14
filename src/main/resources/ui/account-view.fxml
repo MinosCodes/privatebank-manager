@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.controller.AccountViewController" prefWidth="700" prefHeight="500">
+    <top>
+        <VBox spacing="6" BorderPane.alignment="CENTER_LEFT">
+            <children>
+                <Label fx:id="accountNameLabel" text="Account" style="-fx-font-size: 20px;" />
+                <Label text="Kontostand" style="-fx-font-size: 12px; -fx-text-fill: #5f6a72;" />
+                <Label fx:id="balanceLabel" text="0.00 EUR" style="-fx-font-size: 16px;" />
+                <HBox spacing="10">
+                    <children>
+                        <ComboBox fx:id="viewModeCombo" prefWidth="200" />
+                        <Button text="Transaktion hinzufügen" onAction="#onAddTransaction" />
+                        <Button text="Zurück" onAction="#onBack" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="15" right="16" bottom="10" left="16" />
+            </padding>
+        </VBox>
+    </top>
+    <center>
+        <ListView fx:id="transactionListView" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>

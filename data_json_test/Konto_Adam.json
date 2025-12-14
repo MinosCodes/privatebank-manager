@@ -1,0 +1,26 @@
+[
+  {
+    "CLASSNAME": "Payment",
+    "incomingInterest": 0.05,
+    "outgoingInterest": 0.1,
+    "date": "01.01.2025",
+    "amount": 2000.0,
+    "description": "Lohn"
+  },
+  {
+    "CLASSNAME": "IncomingTransfer",
+    "sender": "Bob",
+    "recipient": "Adam",
+    "date": "02.01.2025",
+    "amount": 200.0,
+    "description": "Geschenk"
+  },
+  {
+    "CLASSNAME": "Payment",
+    "incomingInterest": 0.05,
+    "outgoingInterest": 0.1,
+    "date": "01.01.2025",
+    "amount": 1000.0,
+    "description": "Lohn"
+  }
+]
