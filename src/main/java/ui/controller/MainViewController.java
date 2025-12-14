@@ -12,7 +12,7 @@ import javafx.scene.input.MouseButton;
 import java.io.IOException;
 
 /**
- * Controller for the main view that lists all bank accounts.
+ * Controller für die Hauptansicht, die alle Bankkonten auflistet.
  */
 public class MainViewController extends BaseController {
 

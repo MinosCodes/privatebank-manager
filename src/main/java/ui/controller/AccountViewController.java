@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Controller for the detailed account view including all transactions.
+ * Controller für die detaillierte Kontoansicht mit sämtlichen Transaktionen.
  */
 public class AccountViewController extends BaseController {
 

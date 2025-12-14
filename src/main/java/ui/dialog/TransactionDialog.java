@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import java.time.LocalDate;
 
 /**
- * Custom dialog that allows the user to create either a Payment or Transfer transaction.
+ * Benutzerdefinierter Dialog, mit dem der Nutzer entweder eine Payment- oder eine Transfer-Transaktion anlegen kann.
  */
 public class TransactionDialog extends Dialog<Transaction> {
 

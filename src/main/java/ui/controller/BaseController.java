@@ -6,7 +6,7 @@ import javafx.scene.control.ButtonType;
 import ui.SceneManager;
 
 /**
- * Shared base controller that exposes common helpers for all scenes.
+ * Gemeinsamer Basiskontroller, der allen Szenen Hilfsfunktionen bereitstellt.
  */
 public abstract class BaseController {
 
@@ -20,7 +20,7 @@ public abstract class BaseController {
     }
 
     /**
-     * Template method that allows subclasses to perform initialization after dependencies are set.
+     * Schablonenmethode, mit der Unterklassen nach gesetzten Abhaengigkeiten weitere Initialisierung ausfuehren koennen.
      */
     protected void onReady() {
         // optional hook

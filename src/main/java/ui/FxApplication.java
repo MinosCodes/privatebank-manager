@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * JavaFX launcher that wires the PrivateBank domain model to the UI scenes.
+ * JavaFX-Starter, der das PrivateBank-Domainmodell mit den UI-Szenen verbindet.
  */
 public class FxApplication extends Application {
 

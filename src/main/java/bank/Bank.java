@@ -6,112 +6,112 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Interface for a generic bank. Provides multiple methods to handle the interaction between
- * accounts and transactions.
+ * Interface fuer eine generische Bank. Stellt mehrere Methoden bereit, um die Interaktion
+ * zwischen Konten und Transaktionen zu verwalten.
  */
 public interface Bank {
 
     /**
-     * Adds an account to the bank.
-     *
-     * @param account the account to be added
-     * @throws AccountAlreadyExistException if the account already exists
+         * Fuegt der Bank ein neues Konto hinzu.
+         *
+         * @param account das hinzuzufuegende Konto
+         * @throws AccountAlreadyExistException falls das Konto bereits existiert
      */
     void createAccount(String account) throws AccountAlreadyExistException,java.io.IOException;
 
     /**
-     * Adds an account (with specified transactions) to the bank.
-     * Important: duplicate transactions must not be added to the account!
-     *
-     * @param account      the account to be added
-     * @param transactions a list of already existing transactions which should be added to the newly created account
-     * @throws AccountAlreadyExistException    if the account already exists
-     * @throws TransactionAlreadyExistException if the transaction already exists
-     * @throws TransactionAttributeException    if the validation check for certain attributes fail
+         * Fuegt ein Konto mit einer vorgegebenen Transaktionsliste hinzu.
+         * Wichtig: Doppelte Transaktionen duerfen dem Konto nicht erneut zugeordnet werden.
+         *
+         * @param account      das hinzuzufuegende Konto
+         * @param transactions Liste bereits existierender Transaktionen, die dem neuen Konto hinzugefuegt werden sollen
+         * @throws AccountAlreadyExistException     falls das Konto bereits existiert
+         * @throws TransactionAlreadyExistException falls die Transaktion bereits existiert
+         * @throws TransactionAttributeException    falls die Validierung der Attribute fehlschlaegt
      */
     void createAccount(String account, List<Transaction> transactions)
             throws AccountAlreadyExistException, TransactionAlreadyExistException, TransactionAttributeException ,java.io.IOException;
 
     /**
-     * Adds a transaction to an already existing account.
-     *
-     * @param account     the account to which the transaction is added
-     * @param transaction the transaction which should be added to the specified account
-     * @throws TransactionAlreadyExistException if the transaction already exists
-     * @throws AccountDoesNotExistException     if the specified account does not exist
-     * @throws TransactionAttributeException    if the validation check for certain attributes fail
+        * Fuegt einem bestehenden Konto eine Transaktion hinzu.
+         *
+         * @param account     das Konto, dem die Transaktion hinzugefuegt wird
+         * @param transaction die Transaktion, die gespeichert werden soll
+         * @throws TransactionAlreadyExistException falls die Transaktion bereits existiert
+         * @throws AccountDoesNotExistException     falls das Konto nicht existiert
+         * @throws TransactionAttributeException    falls die Validierung der Attribute fehlschlaegt
      */
     void addTransaction(String account, Transaction transaction)
             throws TransactionAlreadyExistException, AccountDoesNotExistException, TransactionAttributeException,java.io.IOException;
 
     /**
-     * Removes a transaction from an account. If the transaction does not exist, an exception is
-     * thrown.
-     *
-     * @param account     the account from which the transaction is removed
-     * @param transaction the transaction which is removed from the specified account
-     * @throws AccountDoesNotExistException     if the specified account does not exist
-     * @throws TransactionDoesNotExistException if the transaction cannot be found
+         * Entfernt eine Transaktion aus einem Konto. Falls sie nicht existiert, wird eine Exception
+         * ausgeloest.
+         *
+         * @param account     das Konto, aus dem die Transaktion geloescht wird
+         * @param transaction die zu entfernende Transaktion
+         * @throws AccountDoesNotExistException     falls das Konto nicht existiert
+         * @throws TransactionDoesNotExistException falls die Transaktion nicht gefunden wird
      */
     void removeTransaction(String account, Transaction transaction)
             throws AccountDoesNotExistException, TransactionDoesNotExistException,java.io.IOException;
 
         /**
-         * Deletes the specified account and removes any persisted representation.
-         *
-         * @param account the account that should be deleted
-         * @throws AccountDoesNotExistException if the specified account cannot be found
-         * @throws IOException                   if the account data cannot be removed from the file system
+                 * Loescht das angegebene Konto und entfernt jede persistierte Darstellung.
+                 *
+                 * @param account das Konto, das geloescht werden soll
+                 * @throws AccountDoesNotExistException falls das Konto nicht gefunden wird
+                 * @throws IOException                  falls die Kontodaten nicht aus dem Dateisystem entfernt werden koennen
          */
         void deleteAccount(String account) throws AccountDoesNotExistException, IOException;
 
     /**
-     * Checks whether the specified transaction for a given account exists.
-     *
-     * @param account     the account from which the transaction is checked
-     * @param transaction the transaction to search/look for
+         * Prueft, ob die angegebene Transaktion in dem Konto existiert.
+         *
+         * @param account     das Konto, in dem gesucht wird
+         * @param transaction die gesuchte Transaktion
      */
     boolean containsTransaction(String account, Transaction transaction);
 
     /**
-     * Calculates and returns the current account balance.
-     *
-     * @param account the selected account
-     * @return the current account balance
+         * Berechnet und liefert den aktuellen Kontostand.
+         *
+         * @param account das ausgewaehlte Konto
+         * @return aktueller Kontostand
      */
     double getAccountBalance(String account);
 
     /**
-     * Returns a list of transactions for an account.
-     *
-     * @param account the selected account
-     * @return the list of all transactions for the specified account
+         * Liefert die Liste aller Transaktionen eines Kontos.
+         *
+         * @param account das ausgewaehlte Konto
+         * @return Liste aller Transaktionen des Kontos
      */
     List<Transaction> getTransactions(String account);
 
     /**
-     * Returns a sorted list (-> calculated amounts) of transactions for a specific account. Sorts the list either in ascending or descending order
-     * (or empty).
-     *
-     * @param account the selected account
-     * @param asc     selects if the transaction list is sorted in ascending or descending order
-     * @return the sorted list of all transactions for the specified account
+         * Liefert eine sortierte Liste (nach berechneten Betraegen) fuer ein Konto. Sortiert wird
+         * aufsteigend oder absteigend (oder leer, falls keine Daten vorhanden sind).
+         *
+         * @param account das ausgewaehlte Konto
+         * @param asc     {@code true} fuer aufsteigend, {@code false} fuer absteigend
+         * @return sortierte Liste aller Transaktionen des Kontos
      */
     List<Transaction> getTransactionsSorted(String account, boolean asc);
 
     /**
-     * Returns a list of either positive or negative transactions (-> calculated amounts).
-     *
-     * @param account  the selected account
-     * @param positive selects if positive or negative transactions are listed
-     * @return the list of all transactions by type
+         * Liefert eine Liste der positiven oder negativen Transaktionen (berechnete Betraege).
+         *
+         * @param account  das ausgewaehlte Konto
+         * @param positive {@code true} fuer Einnahmen, {@code false} fuer Ausgaben
+         * @return Liste der Transaktionen nach Typ
      */
     List<Transaction> getTransactionsByType(String account, boolean positive);
 
         /**
-         * Returns the list of all account names that currently exist in the bank.
-         *
-         * @return list of account identifiers
+                 * Gibt die Liste aller derzeit vorhandenen Kontonamen in der Bank zurueck.
+                 *
+                 * @return Liste der Konto-Bezeichner
          */
         List<String> getAllAccounts();
 }

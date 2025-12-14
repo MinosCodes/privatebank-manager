@@ -12,7 +12,7 @@ import ui.controller.MainViewController;
 import java.io.IOException;
 
 /**
- * Handles loading and swapping JavaFX scenes while sharing the PrivateBank instance.
+ * Steuert Laden und Wechsel der JavaFX-Szenen und stellt die gemeinsame PrivateBank-Instanz bereit.
  */
 public class SceneManager {
 
