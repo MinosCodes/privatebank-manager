@@ -9,19 +9,21 @@ public class TransactionSerDer implements JsonSerializer<Transaction>, JsonDeser
     public JsonElement serialize(Transaction src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject obj = new JsonObject();
         obj.addProperty("CLASSNAME", src.getClass().getSimpleName());
+
+        JsonObject instance = new JsonObject();
         if (src instanceof Transfer t) {
-            obj.addProperty("sender", t.getSender());
-            obj.addProperty("recipient", t.getRecipient());
+            instance.addProperty("sender", t.getSender());
+            instance.addProperty("recipient", t.getRecipient());
         } else if (src instanceof Payment p) {
-            obj.addProperty("incomingInterest", p.getIncomingInterest());
-            obj.addProperty("outgoingInterest", p.getOutgoingInterest());
+            instance.addProperty("incomingInterest", p.getIncomingInterest());
+            instance.addProperty("outgoingInterest", p.getOutgoingInterest());
         }
 
-        obj.addProperty("date", src.getDate());
-        obj.addProperty("amount", src.getAmount());
-        obj.addProperty("description", src.getDescription());
+        instance.addProperty("date", src.getDate());
+        instance.addProperty("amount", src.getAmount());
+        instance.addProperty("description", src.getDescription());
 
-
+        obj.add("INSTANCE", instance);
 
         return obj;
     }
@@ -33,38 +35,40 @@ public class TransactionSerDer implements JsonSerializer<Transaction>, JsonDeser
         JsonObject obj = json.getAsJsonObject();
         String className = obj.get("CLASSNAME").getAsString();
 
-        String date = obj.get("date").getAsString();
-        double amount = obj.get("amount").getAsDouble();
-        String description = obj.get("description").getAsString();
+        JsonObject instance = obj.getAsJsonObject("INSTANCE");
+
+        String date = instance.get("date").getAsString();
+        double amount = instance.get("amount").getAsDouble();
+        String description = instance.get("description").getAsString();
 
         return switch (className) {
             case "IncomingTransfer" -> new IncomingTransfer(
                     date,
                     amount,
                     description,
-                    obj.get("sender").getAsString(),
-                    obj.get("recipient").getAsString()
+                    instance.get("sender").getAsString(),
+                    instance.get("recipient").getAsString()
             );
             case "OutgoingTransfer" -> new OutgoingTransfer(
                     date,
                     amount,
                     description,
-                    obj.get("sender").getAsString(),
-                    obj.get("recipient").getAsString()
+                    instance.get("sender").getAsString(),
+                    instance.get("recipient").getAsString()
             );
             case "Transfer" -> new Transfer(
                     date,
                     amount,
                     description,
-                    obj.get("sender").getAsString(),
-                    obj.get("recipient").getAsString()
+                    instance.get("sender").getAsString(),
+                    instance.get("recipient").getAsString()
             );
             case "Payment" -> new Payment(
                     date,
                     amount,
                     description,
-                    obj.get("incomingInterest").getAsDouble(),
-                    obj.get("outgoingInterest").getAsDouble()
+                    instance.get("incomingInterest").getAsDouble(),
+                    instance.get("outgoingInterest").getAsDouble()
             );
             default -> throw new JsonParseException("Unknown transaction type: " + className);
         };

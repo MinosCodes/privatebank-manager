@@ -1,0 +1,22 @@
+[
+  {
+    "CLASSNAME": "Payment",
+    "INSTANCE": {
+      "incomingInterest": 0.02,
+      "outgoingInterest": 0.05,
+      "date": "2025-12-15",
+      "amount": 500.0,
+      "description": "15"
+    }
+  },
+  {
+    "CLASSNAME": "OutgoingTransfer",
+    "INSTANCE": {
+      "sender": "Amine",
+      "recipient": "Adem",
+      "date": "2025-12-15",
+      "amount": 500.0,
+      "description": "rent"
+    }
+  }
+]
