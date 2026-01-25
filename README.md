@@ -5,6 +5,7 @@ JavaFX application that models a private bank with multiple accounts, interest-b
 ## Features
 - PrivateBank domain model with payments, incoming/outgoing transfers, and validation through custom exceptions.
 - JSON persistence under `data_json_app/` with automatic loading and saving per account.
+- Polymorphic JSON serialization using `Gson` with custom `TransactionSerDer` for handling different transaction types.
 - JavaFX UI that lists accounts, shows transaction details, and provides dialogs for adding new entries.
 - Sorting and filtering options (ascending, descending, income-only, expense-only) for every account view.
 - Maven-based build with JUnit 5 tests for the banking logic.
@@ -65,3 +66,11 @@ Unit tests live under `src/test/java` (e.g., `PaymentTest`, `TransferTest`).
 - JavaFX runtime errors usually stem from missing OpenGL support on headless systems; prefer running locally with a desktop session.
 
 Feel free to adapt the interest rates, data directory, or UI texts inside `ui.FxApplication` for your environment.
+
+## Projektbeschreibung (Deutsch)
+**PrivateBank Manager**
+JavaFX-Anwendung zur Verwaltung einer Privatbank mit persistenten Daten (JSON).
+*   **Funktionen**: Kontoverwaltung, Transaktionen (Ein-/Auszahlungen, Überweisungen), Zinsberechnung.
+*   **Technik**: Java 17, JavaFX 22, Maven, JUnit 5.
+*   **Besonderheit**: Polymorphe JSON-Serialisierung (Gson) für die Speicherung unterschiedlicher Transaktionstypen in einer konsistenten Datenstruktur.
+
